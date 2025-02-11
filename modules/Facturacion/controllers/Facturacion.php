@@ -24,6 +24,7 @@ class Facturacion extends AdminController
 
     public function factura($id = '')
     {
+        
         if (staff_cant('view', 'facturacion')) {
             access_denied('facturacion');
         }
@@ -55,11 +56,19 @@ class Facturacion extends AdminController
             $title = _l('edit', _l('factura_lowercase'));
         }
 
-        $this->load->model('clientes_model');
-        $data['clientes'] = $this->clientes_model->get('', ['active' => 1]);
+        // var_dump(
+        //     $id, 
+        //     $this->input->post(), 
+        //     (($this->input->post())? true: false),
+        //     $title
+        // );
+        // exit;
 
-        $this->load->model('productos_model');
-        $data['productos'] = $this->productos_model->get_all();
+        // $this->load->model('clientes_model');
+        // $data['clientes'] = $this->clientes_model->get('', ['active' => 1]);
+
+        // $this->load->model('productos_model');
+        // $data['productos'] = $this->productos_model->get_all();
 
         $data['title'] = $title;
         $this->load->view('factura', $data);
